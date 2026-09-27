@@ -1,0 +1,10 @@
+# disciplinas/aplicacao  —  CASOS DE USO
+#
+# Estrutura recomendada:
+#   DisciplinaService.java       implementa DisciplinaApi; confere via CursoApi se o curso existe e está ativo;
+#                                registra o docente responsável (DocenteApi + UsuarioAutenticadoApi)
+#   DisciplinaComando.java / DisciplinaDetalhe.java
+#
+# Regras:
+#   - Sigla única por curso.
+#   - O colaborador cadastra as disciplinas que leciona.

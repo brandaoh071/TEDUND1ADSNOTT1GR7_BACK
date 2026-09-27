@@ -1,0 +1,10 @@
+# compartilhado/web
+# Configuração web transversal da API.
+#
+# Estrutura recomendada:
+#   TratadorGlobalDeErros.java   @RestControllerAdvice: converte exceções em ProblemDetail (RFC 9457)
+#                                400 validação (com lista de campos) / 404 / 422
+#   CorsConfig.java              CORS aceitando apenas a origem do Front-End (app.cors.allowed-origin)
+#
+# Regras:
+#   - A segurança (SecurityFilterChain, JWT, perfis) NÃO fica aqui: fica no módulo identidade.

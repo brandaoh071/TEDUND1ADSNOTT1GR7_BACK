@@ -1,0 +1,9 @@
+# pessoas/api  —  INTERFACE PÚBLICA DO MÓDULO (Facade)
+# Marcar com @NamedInterface("api") no package-info.java.
+#
+# Estrutura recomendada:
+#   DocenteApi.java              interface: buscarResumo(docenteId), buscarPorUsuario(usuarioId), estaAtivo(docenteId)
+#   DiscenteApi.java             interface: buscarResumo(discenteId), buscarPorUsuario(usuarioId), estaAtivo(discenteId)
+#   DocenteResumo.java           record (id, matricula, nome, centroAcademicoId, status)
+#   DiscenteResumo.java          record (id, matricula, nome, cursoId, status)
+#   eventos/DocenteInativadoEvent.java / DiscenteInativadoEvent.java

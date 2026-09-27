@@ -1,0 +1,10 @@
+# identidade/infra  —  SEGURANÇA E PERSISTÊNCIA
+#
+# Estrutura recomendada:
+#   UsuarioRepository.java           JpaRepository<Usuario, Long>: findByLogin
+#   UsuarioDetailsService.java       implementa UserDetailsService lendo do banco (exigência do cenário:
+#                                    Spring Security com banco, não em memória)
+#   SegurancaConfig.java             SecurityFilterChain: stateless, CORS, /api/auth/login público,
+#                                    demais rotas autenticadas; oauth2ResourceServer(jwt); @EnableMethodSecurity
+#   JwtConfig.java                   JwtEncoder / JwtDecoder (chave em app.jwt.secret)
+#   PerfilConverter.java             converte o claim "perfis" do JWT em ROLE_ADMIN / ROLE_COLABORADOR / ROLE_USUARIO

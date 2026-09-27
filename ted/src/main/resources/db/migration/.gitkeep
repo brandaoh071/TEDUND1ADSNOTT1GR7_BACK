@@ -1,0 +1,16 @@
+# db/migration  —  MIGRAÇÕES DO FLYWAY
+# Toda criação/alteração de tabela é feita aqui. O Hibernate só valida (ddl-auto: validate).
+#
+# Estrutura recomendada (numeração única, nunca editar uma migração já executada):
+#   V1__estrutura_ies.sql              create schema estrutura; tabelas ies e pro_reitoria
+#   V2__estrutura_centro_academico.sql
+#   V3__estrutura_curso.sql
+#   V4__identidade_usuario_perfil.sql
+#   V5__pessoas_docente_discente.sql
+#   ...
+#   V50__seed_dados_teste.sql          IES, CAs e cursos de teste do cenário (UCSAL, PUC-Rio, CCET, CTC...)
+#
+# Regras:
+#   - Um schema por módulo: estrutura, identidade, pessoas, disciplinas, solicitacoes, auditoria.
+#   - Nome do arquivo: V<numero>__<modulo>_<descricao>.sql
+#   - Para mudar algo já executado, crie uma nova migração.

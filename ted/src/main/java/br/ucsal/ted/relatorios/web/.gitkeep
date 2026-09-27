@@ -1,0 +1,9 @@
+# relatorios/web  —  ADAPTADOR DE ENTRADA (REST)
+#
+# Estrutura recomendada:
+#   RelatorioController.java
+#     GET /api/relatorios/estrutura          (ADMIN)        IES, CAs e cursos com vinculações
+#     GET /api/relatorios/docentes?status=   (ADMIN)        docentes por CA, ativos / inativos
+#     GET /api/relatorios/colaborador        (COLABORADOR)  disciplinas, discentes e solicitações
+#     GET /api/relatorios/discente           (USUARIO)      dados e solicitações do próprio discente
+#     ?formato=json|pdf

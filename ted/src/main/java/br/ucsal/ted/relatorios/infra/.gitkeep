@@ -1,0 +1,9 @@
+# relatorios/infra  —  GERAÇÃO DE ARQUIVOS
+#
+# Estrutura recomendada:
+#   GeradorRelatorio.java        interface (Strategy): gerar(Relatorio) -> bytes
+#   GeradorJson.java             implementação JSON
+#   GeradorPdf.java              implementação PDF (ex.: OpenPDF)
+#
+# Regras:
+#   - Não tem repositório próprio: os dados vêm dos outros módulos.

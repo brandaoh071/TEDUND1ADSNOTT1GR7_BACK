@@ -1,0 +1,8 @@
+# disciplinas/dominio  —  ENTIDADES E REGRAS
+#
+# Estrutura recomendada:
+#   Disciplina.java              @Entity (schema "disciplinas"): sigla, descricao, cursoId (obrigatório, único curso),
+#                                cargaHoraria, docenteId, dataCadastro, status
+#
+# Regras:
+#   - Inativada quando deixa de ser oferecida (decisão do CA); nunca excluída se tiver histórico.

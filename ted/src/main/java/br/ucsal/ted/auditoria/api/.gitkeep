@@ -1,0 +1,6 @@
+# auditoria/api  —  INTERFACE PÚBLICA DO MÓDULO
+# Marcar com @NamedInterface("api") no package-info.java.
+#
+# Estrutura recomendada:
+#   (normalmente vazio) — os outros módulos NÃO chamam a auditoria; ela escuta os eventos que eles publicam.
+#   AuditoriaApi.java            opcional: registrar(acao, entidade, entidadeId, detalhe) para casos sem evento

@@ -1,0 +1,9 @@
+# auditoria/dominio  —  ENTIDADES
+#
+# Estrutura recomendada:
+#   RegistroAuditoria.java       @Entity (schema "auditoria"): usuarioId, login, perfil, modulo, acao,
+#                                entidade, entidadeId, detalhe (json/texto), dataHora
+#   AcaoAuditoria.java           enum CADASTRAR / ATUALIZAR / INATIVAR / REATIVAR / LOGIN / APROVAR / EMITIR_RELATORIO ...
+#
+# Regras:
+#   - Imutável: sem métodos de alteração.

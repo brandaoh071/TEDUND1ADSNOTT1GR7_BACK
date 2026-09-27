@@ -1,0 +1,10 @@
+# compartilhado/dominio
+# Tipos de domínio comuns a TODOS os módulos. Nada específico de um módulo entra aqui.
+#
+# Estrutura recomendada:
+#   Status.java                  enum ATIVO / INATIVO (cadastros são inativados, nunca excluídos)
+#   EventoDominio.java           interface base dos eventos de domínio (opcional)
+#
+# Regras:
+#   - Sem dependência de Spring Web ou JPA de outros módulos.
+#   - Se algo só é usado por um módulo, ele fica no próprio módulo.

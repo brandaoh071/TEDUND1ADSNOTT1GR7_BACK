@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: 'postgres:17-alpine'
+    container_name: ted-postgres
+    environment:
+      - 'POSTGRES_DB=ted'
+      - 'POSTGRES_USER=ted'
+      - 'POSTGRES_PASSWORD=ted'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'ted-db-data:/var/lib/postgresql/data'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ted -d ted']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  ted-db-data:

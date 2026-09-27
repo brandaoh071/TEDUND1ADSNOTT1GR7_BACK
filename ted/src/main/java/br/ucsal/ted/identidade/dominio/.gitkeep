@@ -1,0 +1,9 @@
+# identidade/dominio  —  ENTIDADES
+#
+# Estrutura recomendada:
+#   Usuario.java                 @Entity (schema "identidade"): login (único), senhaHash, ativo, dataCadastro,
+#                                perfis (@ElementCollection de Perfil ou tabela usuario_perfil N:N)
+#
+# Regras:
+#   - Métodos de significado: adicionarPerfil(), removerPerfil(), desativar(), alterarSenha().
+#   - Não conhece Docente nem Discente (quem guarda usuarioId é o módulo pessoas).

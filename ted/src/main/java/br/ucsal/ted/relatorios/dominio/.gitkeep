@@ -1,0 +1,7 @@
+# relatorios/dominio  —  MODELO DOS RELATÓRIOS (sem entidades JPA)
+#
+# Estrutura recomendada:
+#   Relatorio.java               record: titulo, emitidoPor, perfil, dataEmissao, secoes
+#   ModeloRelatorio.java         classe abstrata (Template Method): montarCabecalho() -> montarCorpo() -> montarRodape()
+#   RelatorioEstrutura.java / RelatorioDocentes.java / RelatorioColaborador.java / RelatorioDiscente.java
+#                                estendem ModeloRelatorio e implementam só o corpo

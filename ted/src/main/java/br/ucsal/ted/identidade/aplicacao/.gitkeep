@@ -1,0 +1,11 @@
+# identidade/aplicacao  —  CASOS DE USO
+#
+# Estrutura recomendada:
+#   AutenticacaoService.java     valida login/senha (AuthenticationManager) e gera o JWT
+#   UsuarioService.java          @Service; implementa UsuarioApi (criar, adicionar perfil, desativar)
+#   UsuarioAutenticadoService.java   implementa UsuarioAutenticadoApi (lê o SecurityContext)
+#   TokenService.java            gera JWT (JwtEncoder) com login, id e perfis nos claims
+#
+# Regras:
+#   - Senhas sempre com PasswordEncoder (BCrypt).
+#   - Um usuário pode acumular perfis.

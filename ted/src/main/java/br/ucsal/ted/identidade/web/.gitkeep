@@ -1,0 +1,10 @@
+# identidade/web  —  ADAPTADOR DE ENTRADA (REST)
+#
+# Estrutura recomendada:
+#   AuthController.java          POST /api/auth/login   (login + senha -> JWT)   ÚNICA rota pública
+#                                GET  /api/auth/me      (dados e perfis do usuário logado)
+#   UsuarioController.java       PATCH /api/usuarios/{id}/perfis   (ADMIN: adicionar/remover perfil)
+#   LoginRequest.java / TokenResponse.java   records
+#
+# Regras:
+#   - Nunca devolver a senha, nem o hash.

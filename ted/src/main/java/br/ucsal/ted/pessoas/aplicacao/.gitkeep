@@ -1,0 +1,12 @@
+# pessoas/aplicacao  —  CASOS DE USO
+#
+# Estrutura recomendada:
+#   DocenteService.java          implementa DocenteApi; confere via CentroAcademicoApi se o CA existe e está ativo;
+#                                cria a conta com UsuarioApi (perfil COLABORADOR)
+#   DiscenteService.java         implementa DiscenteApi; confere via CursoApi; cria a conta (perfil USUARIO)
+#   DocenteComando.java / DocenteDetalhe.java / DiscenteComando.java / DiscenteDetalhe.java
+#   InativacaoComando.java       record (motivo, observacao)
+#
+# Regras:
+#   - Matrícula única por tipo (docente/discente).
+#   - Publica DocenteInativadoEvent / DiscenteInativadoEvent.

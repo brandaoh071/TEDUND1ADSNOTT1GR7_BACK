@@ -1,0 +1,11 @@
+# estrutura/infra  —  ADAPTADORES DE SAÍDA (persistência e integrações)
+#
+# Estrutura recomendada:
+#   IesRepository.java               JpaRepository<Ies, Long>: existsBySiglaIgnoreCase, findAllByStatus
+#   CentroAcademicoRepository.java   JpaRepository<CentroAcademico, Long>: findAllByIesId
+#   CursoRepository.java             JpaRepository<Curso, Long>: findAllByCentroAcademicoId
+#
+# Regras:
+#   - Só este pacote conversa com o banco.
+#   - Consultas apenas nas tabelas do schema "estrutura" (nada de JOIN com schemas de outros módulos).
+#   - Na 2ª unidade, clientes HTTP/Feign de outros serviços também ficam aqui.

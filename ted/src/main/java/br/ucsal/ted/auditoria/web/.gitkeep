@@ -1,0 +1,8 @@
+# auditoria/web  —  ADAPTADOR DE ENTRADA (REST)
+#
+# Estrutura recomendada:
+#   AuditoriaController.java     GET /api/auditoria   (ADMIN)
+#                                filtros: usuarioId, modulo, acao, entidade, periodo (de/ate); paginado
+#
+# Regras:
+#   - Somente leitura: log de auditoria não é editado nem excluído.

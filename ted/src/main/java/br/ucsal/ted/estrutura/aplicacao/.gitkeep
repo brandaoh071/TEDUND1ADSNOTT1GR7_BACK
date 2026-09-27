@@ -1,0 +1,15 @@
+# estrutura/aplicacao  —  CASOS DE USO
+#
+# Estrutura recomendada:
+#   IesService.java              @Service @Transactional; implementa IesApi
+#   IesComando.java              record de entrada (cadastrar/atualizar) com Bean Validation
+#   IesDetalhe.java              record de saída (o que a API devolve)
+#   CentroAcademicoService.java  usa IesApi para conferir se a IES existe e está ativa
+#   CentroAcademicoComando.java / CentroAcademicoDetalhe.java
+#   CursoService.java / CursoComando.java / CursoDetalhe.java
+#
+# Regras:
+#   - Orquestra: busca no repositório, chama métodos do domínio, salva, publica eventos.
+#   - Validações que dependem do banco ficam aqui (ex.: sigla duplicada).
+#   - Leitura com @Transactional(readOnly = true).
+#   - Converte entidade -> DTO antes de devolver; a entidade nunca sai do módulo.

@@ -1,0 +1,8 @@
+# solicitacoes/api  —  INTERFACE PÚBLICA DO MÓDULO (Facade)
+# Marcar com @NamedInterface("api") no package-info.java.
+#
+# Estrutura recomendada:
+#   SolicitacaoApi.java          interface: listarPorDiscente(discenteId), contarPorStatus()   (usada por relatorios)
+#   SolicitacaoResumo.java       record (id, discenteId, dataSolicitacao, status, itens)
+#   StatusSolicitacao.java       enum AGUARDANDO / EM_ANALISE / LISTA_ESPERA
+#   eventos/SolicitacaoCriadaEvent.java / SolicitacaoAprovadaEvent.java / SolicitacaoEmEsperaEvent.java

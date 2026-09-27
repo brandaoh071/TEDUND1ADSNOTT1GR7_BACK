@@ -1,0 +1,16 @@
+# estrutura/api  —  INTERFACE PÚBLICA DO MÓDULO (Facade)
+# Único pacote que outros módulos podem usar. Marcar com @NamedInterface("api") no package-info.java.
+#
+# Estrutura recomendada:
+#   package-info.java            @NamedInterface("api")
+#   IesApi.java                  interface: buscarResumo(iesId), estaAtiva(iesId)
+#   CentroAcademicoApi.java      interface: buscarResumo(caId), estaAtivo(caId)
+#   CursoApi.java                interface: buscarResumo(cursoId), estaAtivo(cursoId)
+#   IesResumo.java               record com o mínimo que outros módulos precisam (id, sigla, nome, status)
+#   CentroAcademicoResumo.java   record
+#   CursoResumo.java             record
+#   eventos/IesInativadaEvent.java   eventos publicados pelo módulo (records)
+#
+# Regras:
+#   - Só interfaces, records e eventos. Nunca entidades JPA.
+#   - Na 2ª unidade, estas interfaces passam a ser implementadas por clientes HTTP do estrutura-service.

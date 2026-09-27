@@ -1,0 +1,12 @@
+# relatorios/aplicacao  —  CASOS DE USO
+#
+# Estrutura recomendada:
+#   RelatorioEstruturaService.java     usa IesApi, CentroAcademicoApi, CursoApi
+#   RelatorioDocentesService.java      usa DocenteApi, CentroAcademicoApi
+#   RelatorioColaboradorService.java   usa DisciplinaApi, DiscenteApi, SolicitacaoApi
+#   RelatorioDiscenteService.java      usa DiscenteApi, SolicitacaoApi
+#
+# Regras:
+#   - Só leitura, apenas pelas interfaces api dos outros módulos (nunca repositórios alheios).
+#   - Todo relatório traz a identificação de quem emitiu (UsuarioAutenticadoApi) - exigência do cenário.
+#   - Publica RelatorioEmitidoEvent.

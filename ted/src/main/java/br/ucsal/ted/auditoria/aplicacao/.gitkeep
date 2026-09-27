@@ -1,0 +1,12 @@
+# auditoria/aplicacao  —  CASOS DE USO
+#
+# Estrutura recomendada:
+#   OuvinteEventosAuditoria.java @ApplicationModuleListener para os eventos de todos os módulos
+#                                (IesInativadaEvent, DocenteInativadoEvent, SolicitacaoCriadaEvent...)
+#   AuditoriaAspect.java         opcional (Spring AOP): registra toda chamada de escrita dos @Service
+#   ConsultaAuditoriaService.java  consulta com filtros
+#   RegistroAuditoriaDetalhe.java  record de saída
+#
+# Regras:
+#   - Exigência do cenário: registrar TODAS as ações executadas no sistema.
+#   - Primeiro módulo a virar microsserviço (eventos passam a chegar via RabbitMQ).

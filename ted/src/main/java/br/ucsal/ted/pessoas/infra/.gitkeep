@@ -1,0 +1,6 @@
+# pessoas/infra  —  PERSISTÊNCIA
+#
+# Estrutura recomendada:
+#   DocenteRepository.java           findByMatricula, findByUsuarioId, findAllByCentroAcademicoIdAndStatus
+#   DiscenteRepository.java          findByMatricula, findByUsuarioId, findAllByCursoIdAndStatus
+#   HistoricoInativacaoRepository.java

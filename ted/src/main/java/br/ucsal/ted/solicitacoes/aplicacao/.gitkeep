@@ -1,0 +1,8 @@
+# solicitacoes/aplicacao  —  CASOS DE USO
+#
+# Estrutura recomendada:
+#   CriarSolicitacaoService.java     identifica o discente (UsuarioAutenticadoApi + DiscenteApi), confere as disciplinas
+#                                    (DisciplinaApi), aplica as regras e salva com status AGUARDANDO
+#   ValidarSolicitacaoService.java   lista por ordem de recebimento; aprova ou coloca em espera
+#   SolicitacaoComando.java          record: itens [ { disciplinaId, prioridade } ]
+#   SolicitacaoDetalhe.java

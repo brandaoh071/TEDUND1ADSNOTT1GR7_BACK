@@ -1,0 +1,9 @@
+# pessoas/web  —  ADAPTADOR DE ENTRADA (REST)
+#
+# Estrutura recomendada:
+#   DocenteController.java       /api/docentes    (ADMIN)        POST, GET, GET/{id}, PUT, PATCH/{id}/inativar
+#   DiscenteController.java      /api/discentes   (COLABORADOR)  POST, GET, GET/{id}, PUT, PATCH/{id}/inativar
+#
+# Regras:
+#   - Inativar exige o motivo no corpo (afastamento, desligamento, suspensão, desistência...).
+#   - Autorização com @PreAuthorize("hasRole('ADMIN')") / hasRole('COLABORADOR').

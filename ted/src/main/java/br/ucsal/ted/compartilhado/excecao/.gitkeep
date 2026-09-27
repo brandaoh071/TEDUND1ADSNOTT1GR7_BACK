@@ -1,0 +1,10 @@
+# compartilhado/excecao
+# Exceções de negócio usadas por todos os módulos.
+#
+# Estrutura recomendada:
+#   RegraNegocioException.java           regra do cenário violada          -> HTTP 422
+#   RecursoNaoEncontradoException.java   id inexistente                    -> HTTP 404
+#
+# Regras:
+#   - Estendem RuntimeException.
+#   - Mensagens em português, prontas para exibir ao usuário.

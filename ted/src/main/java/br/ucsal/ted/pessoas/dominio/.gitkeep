@@ -1,0 +1,13 @@
+# pessoas/dominio  —  ENTIDADES E REGRAS
+#
+# Estrutura recomendada:
+#   Docente.java                 @Entity (schema "pessoas"): matricula, nomeCompleto, email, telefone,
+#                                centroAcademicoId (obrigatório, único CA), usuarioId, dataCadastro, status
+#   Discente.java                @Entity: matricula, nomeCompleto, email, telefone,
+#                                cursoId (obrigatório, único curso), usuarioId, dataCadastro, status
+#   HistoricoInativacao.java     @Entity: tipoPessoa, pessoaId, motivo, observacao, dataHora, responsavelId
+#   MotivoInativacao.java        enum AFASTAMENTO / DESLIGAMENTO / SUSPENSAO_CONTRATUAL / DESISTENCIA / OUTRO
+#
+# Regras:
+#   - inativar(motivo) registra o HistoricoInativacao (exigência do cenário).
+#   - CA, Curso e Usuário são guardados só pelo ID (pertencem a outros módulos).

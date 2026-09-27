@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ted
+
+  docker:
+    compose:
+      lifecycle-management: start-only
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    locations: classpath:db/migration
+
+  mvc:
+    problemdetails:
+      enabled: true
+
+app:
+  cors:
+    allowed-origin: http://localhost:4200

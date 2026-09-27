@@ -1,0 +1,15 @@
+# identidade/api  —  INTERFACE PÚBLICA DO MÓDULO (Facade)
+# Marcar com @NamedInterface("api") no package-info.java.
+#
+# Estrutura recomendada:
+#   UsuarioApi.java              interface: criarUsuario(login, senha, perfis), adicionarPerfil(usuarioId, perfil),
+#                                desativar(usuarioId), buscarResumo(usuarioId)
+#   UsuarioAutenticadoApi.java   interface: usuarioAtual() -> id, login e perfis de quem fez a requisição
+#   Perfil.java                  enum ADMIN / COLABORADOR / USUARIO
+#   UsuarioResumo.java           record (id, login, perfis, ativo)
+#   eventos/UsuarioCriadoEvent.java
+#
+# Regras:
+#   - O módulo pessoas usa UsuarioApi para criar a conta de acesso do docente (COLABORADOR) e do discente (USUARIO).
+#   - Auditoria e relatórios usam UsuarioAutenticadoApi para saber quem executou a ação.
+#   - Na 2ª unidade vira o identidade-service, o único que emite JWT.

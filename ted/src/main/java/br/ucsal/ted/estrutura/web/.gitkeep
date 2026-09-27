@@ -1,0 +1,19 @@
+# estrutura/web  —  ADAPTADOR DE ENTRADA (REST)
+#
+# Estrutura recomendada:
+#   IesController.java              /api/ies
+#   CentroAcademicoController.java  /api/centros-academicos
+#   CursoController.java            /api/cursos
+#
+# Endpoints padrão de cada recurso:
+#   POST   /api/ies                 cadastrar            (201)
+#   GET    /api/ies?status=&page=   listar paginado
+#   GET    /api/ies/{id}            buscar
+#   PUT    /api/ies/{id}            atualizar
+#   PATCH  /api/ies/{id}/inativar   inativar (sem DELETE: cadastro com histórico não é excluído)
+#   PATCH  /api/ies/{id}/reativar   reativar
+#
+# Regras:
+#   - Controller só recebe, valida (@Valid) e delega para aplicacao. Nenhuma regra de negócio aqui.
+#   - Recebe e devolve DTOs (records), nunca entidades.
+#   - Classes com visibilidade de pacote (sem public).

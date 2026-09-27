@@ -1,0 +1,4 @@
+# solicitacoes/infra  —  PERSISTÊNCIA
+#
+# Estrutura recomendada:
+#   SolicitacaoRepository.java   findAllByStatusOrderByDataSolicitacaoAsc (ordem de recebimento), findAllByDiscenteId

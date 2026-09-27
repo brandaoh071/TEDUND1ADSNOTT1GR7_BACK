@@ -1,0 +1,6 @@
+# relatorios/api  —  INTERFACE PÚBLICA DO MÓDULO
+# Marcar com @NamedInterface("api") no package-info.java.
+#
+# Estrutura recomendada:
+#   (normalmente vazio) — nenhum módulo depende de relatórios; é ele que consulta os outros.
+#   eventos/RelatorioEmitidoEvent.java   publicado a cada emissão (a auditoria registra quem emitiu)

@@ -1,0 +1,6 @@
+# disciplinas/web  —  ADAPTADOR DE ENTRADA (REST)
+#
+# Estrutura recomendada:
+#   DisciplinaController.java    /api/disciplinas   (COLABORADOR)
+#                                POST, GET (filtro cursoId, status), GET/{id}, PUT, PATCH/{id}/inativar, PATCH/{id}/reativar
+#                                GET /api/disciplinas/disponiveis   (USUARIO: ativas do curso do discente)

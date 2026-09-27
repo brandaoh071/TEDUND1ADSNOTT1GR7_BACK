@@ -1,0 +1,11 @@
+# disciplinas/api  —  INTERFACE PÚBLICA DO MÓDULO (Facade)
+# Marcar com @NamedInterface("api") no package-info.java.
+#
+# Estrutura recomendada:
+#   DisciplinaApi.java           interface: buscarResumo(disciplinaId), estaAtiva(disciplinaId),
+#                                listarAtivasPorCurso(cursoId)
+#   DisciplinaResumo.java        record (id, sigla, descricao, cursoId, cargaHoraria, status)
+#   eventos/DisciplinaInativadaEvent.java
+#
+# Regras:
+#   - O módulo solicitacoes usa DisciplinaApi para montar a lista que o discente pode escolher.

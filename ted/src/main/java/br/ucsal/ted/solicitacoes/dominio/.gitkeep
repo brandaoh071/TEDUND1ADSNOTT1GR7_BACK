@@ -1,0 +1,15 @@
+# solicitacoes/dominio  —  ENTIDADES E REGRAS (núcleo do sistema)
+#
+# Estrutura recomendada:
+#   Solicitacao.java             @Entity (schema "solicitacoes"): discenteId, semestre, dataSolicitacao, status, itens
+#   ItemSolicitacao.java         @Entity: disciplinaId, prioridade (1 a 5)
+#   StatusSolicitacao (State)    transições permitidas: AGUARDANDO -> EM_ANALISE | LISTA_ESPERA
+#   regras/RegraSolicitacao.java             interface (Strategy/Specification): validar(Solicitacao)
+#   regras/QuantidadeDisciplinasRegra.java   mínimo 2, máximo 9 disciplinas
+#   regras/PrioridadeValidaRegra.java        prioridade no intervalo fechado 1..5
+#   regras/PrioridadeMaximaRegra.java        no máximo 2 disciplinas com prioridade 5
+#   regras/DisciplinaRepetidaRegra.java      a mesma disciplina não pode aparecer duas vezes
+#
+# Regras:
+#   - A Solicitacao aplica todas as RegraSolicitacao antes de ser aceita.
+#   - Mudança de status só por métodos: aprovar(), colocarEmEspera().

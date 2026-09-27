@@ -1,0 +1,4 @@
+# disciplinas/infra  —  PERSISTÊNCIA
+#
+# Estrutura recomendada:
+#   DisciplinaRepository.java    findAllByCursoIdAndStatus, existsByCursoIdAndSiglaIgnoreCase

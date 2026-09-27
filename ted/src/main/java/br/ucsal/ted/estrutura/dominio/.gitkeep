@@ -1,0 +1,16 @@
+# estrutura/dominio  —  ENTIDADES E REGRAS DE NEGÓCIO
+#
+# Estrutura recomendada:
+#   Ies.java                 @Entity (schema "estrutura"): sigla, nome, emailCentral, telefoneCentral,
+#                            reitor (apenas 1 por IES), dataCadastro, status
+#   ProReitoria.java         @Entity: nome, titular (nomeação); pertence a uma Ies (@ManyToOne)
+#   CentroAcademico.java     @Entity: nome, emailCentral, telefoneCentral, coordenador (apenas 1),
+#                            iesId, dataCadastro, status
+#   Curso.java               @Entity: sigla, descricao, turnos, coordenador, centroAcademicoId,
+#                            dataCadastro, status
+#   Turno.java               enum MATUTINO / VESPERTINO / NOTURNO
+#
+# Regras:
+#   - Regras dentro da entidade, com métodos de significado: cadastrar(), atualizar(), inativar(), reativar().
+#   - Sem setters públicos. Construtor vazio protected (exigido pelo JPA).
+#   - Relação JPA só dentro do módulo (Ies -> ProReitoria). Entre agregados use o ID (CentroAcademico guarda iesId).

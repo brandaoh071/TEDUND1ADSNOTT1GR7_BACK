@@ -1,0 +1,10 @@
+# solicitacoes/web  —  ADAPTADOR DE ENTRADA (REST)
+#
+# Estrutura recomendada:
+#   SolicitacaoController.java           (USUARIO)
+#     POST /api/solicitacoes                 cria a solicitação do discente logado
+#     GET  /api/solicitacoes/minhas          acompanha status
+#   ValidacaoSolicitacaoController.java  (COLABORADOR)
+#     GET   /api/solicitacoes/pendentes      por ordem de recebimento
+#     PATCH /api/solicitacoes/{id}/aprovar   -> EM_ANALISE (+ dias, horários e espaços disponíveis)
+#     PATCH /api/solicitacoes/{id}/espera    -> LISTA_ESPERA
