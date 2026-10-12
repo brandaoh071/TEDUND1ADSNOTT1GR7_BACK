@@ -187,12 +187,21 @@ Toda ação de escrita publica um evento de domínio. O módulo `auditoria` grav
 
 ## 11. Como executar
 
-> A seção será preenchida quando o projeto for gerado.
+Pré-requisitos: **JDK 21** (não basta o JRE) e Docker.
 
 ```bash
-# subir o PostgreSQL local
-docker compose up -d
-
-# executar a API
-./mvnw spring-boot:run
+cd ted
+./mvnw spring-boot:run      # sobe o PostgreSQL do docker-compose.yml automaticamente e aplica as migrações Flyway
+./mvnw test                 # testes unitários, Spring Modulith e integração (Testcontainers, precisa do Docker)
 ```
+
+| Item | Valor |
+| --- | --- |
+| API | http://localhost:8080/api |
+| Swagger | http://localhost:8080/swagger-ui.html |
+| Administrador inicial | login `admin`, senha `admin123` (troque fora do ambiente acadêmico) |
+| Docentes e discentes | login = matrícula, senha inicial definida no cadastro |
+
+Variáveis de ambiente úteis: `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, `SPRING_DATASOURCE_PASSWORD`, `APP_CORS_ALLOWED_ORIGIN`, `APP_JWT_SECRET` (mínimo de 32 caracteres) e `APP_JWT_EXPIRACAO` (padrão `8h`).
+
+Para subir tudo (banco, API e Front) há um `docker-compose.yml` na pasta que agrupa os dois repositórios: `docker compose up --build`.

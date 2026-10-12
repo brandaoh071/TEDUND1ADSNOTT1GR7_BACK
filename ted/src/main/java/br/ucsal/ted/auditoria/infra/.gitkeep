@@ -1,4 +1,0 @@
-# auditoria/infra  —  PERSISTÊNCIA
-#
-# Estrutura recomendada:
-#   RegistroAuditoriaRepository.java   JpaRepository + JpaSpecificationExecutor (filtros dinâmicos)

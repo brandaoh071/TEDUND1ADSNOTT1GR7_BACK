@@ -6,10 +6,20 @@ spring:
     compose:
       lifecycle-management: start-only
 
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/ted}
+    username: ${SPRING_DATASOURCE_USERNAME:ted}
+    password: ${SPRING_DATASOURCE_PASSWORD:ted}
+
   jpa:
     open-in-view: false
     hibernate:
       ddl-auto: validate
+    properties:
+      hibernate:
+        default_batch_fetch_size: 50
+        jdbc:
+          time_zone: UTC
 
   flyway:
     locations: classpath:db/migration
@@ -20,4 +30,14 @@ spring:
 
 app:
   cors:
-    allowed-origin: http://localhost:4200
+    allowed-origin: ${APP_CORS_ALLOWED_ORIGIN:http://localhost:4200}
+  jwt:
+    secret: ${APP_JWT_SECRET:ted-ucsal-chave-de-desenvolvimento-com-32-bytes-ou-mais}
+    expiracao: ${APP_JWT_EXPIRACAO:8h}
+    emissor: ted-api
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

@@ -1,0 +1,85 @@
+package br.ucsal.ted.pessoas.web;
+
+import br.ucsal.ted.compartilhado.dominio.Status;
+import br.ucsal.ted.compartilhado.web.PaginaResponse;
+import br.ucsal.ted.pessoas.aplicacao.DocenteService;
+import br.ucsal.ted.pessoas.aplicacao.dto.DocenteRequest;
+import br.ucsal.ted.pessoas.aplicacao.dto.DocenteResponse;
+import br.ucsal.ted.pessoas.aplicacao.dto.HistoricoInativacaoResponse;
+import br.ucsal.ted.pessoas.aplicacao.dto.InativacaoRequest;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/docentes")
+@PreAuthorize("hasRole('ADMIN')")
+@Tag(name = "Docentes", description = "RF005 e RF006 - Docentes com perfil Colaborador")
+public class DocenteController {
+
+    private final DocenteService service;
+
+    public DocenteController(DocenteService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    @Operation(summary = "Lista os docentes com filtro por centro acadêmico, status e busca")
+    public PaginaResponse<DocenteResponse> listar(@RequestParam(required = false) Long centroAcademicoId,
+                                                  @RequestParam(required = false) Status status,
+                                                  @RequestParam(required = false) String busca,
+                                                  @PageableDefault(size = 20, sort = "nomeCompleto") Pageable pageable) {
+        return service.listar(centroAcademicoId, status, busca, pageable);
+    }
+
+    @GetMapping("/{id}")
+    public DocenteResponse buscar(@PathVariable Long id) {
+        return service.buscar(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Cadastra o docente e cria a conta de acesso com perfil COLABORADOR")
+    public DocenteResponse cadastrar(@Valid @RequestBody DocenteRequest request) {
+        return service.cadastrar(request);
+    }
+
+    @PutMapping("/{id}")
+    public DocenteResponse editar(@PathVariable Long id, @Valid @RequestBody DocenteRequest request) {
+        return service.editar(id, request);
+    }
+
+    @PatchMapping("/{id}/inativar")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Inativa o docente registrando o motivo no histórico e desativa a conta de acesso")
+    public void inativar(@PathVariable Long id, @Valid @RequestBody InativacaoRequest request) {
+        service.inativar(id, request.motivo(), request.descricao());
+    }
+
+    @PatchMapping("/{id}/reativar")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void reativar(@PathVariable Long id) {
+        service.reativar(id);
+    }
+
+    @GetMapping("/{id}/historico")
+    public List<HistoricoInativacaoResponse> historico(@PathVariable Long id) {
+        return service.historico(id);
+    }
+}
