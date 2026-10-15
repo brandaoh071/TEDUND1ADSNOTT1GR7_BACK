@@ -1,6 +1,7 @@
 package br.ucsal.ted.estrutura.api;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -13,4 +14,6 @@ public interface EstruturaApi {
     Map<Long, CentroAcademicoResumo> buscarCentrosAcademicos(Collection<Long> ids);
 
     Map<Long, CursoResumo> buscarCursos(Collection<Long> ids);
+
+    List<IesFicha> listarEstruturaCompleta();
 }

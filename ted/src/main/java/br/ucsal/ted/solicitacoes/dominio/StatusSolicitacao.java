@@ -7,7 +7,7 @@ public enum StatusSolicitacao {
     AGUARDANDO {
         @Override
         StatusSolicitacao aprovar() {
-            return EM_ANALISE;
+            return MATRICULADA;
         }
 
         @Override
@@ -19,7 +19,7 @@ public enum StatusSolicitacao {
     LISTA_ESPERA {
         @Override
         StatusSolicitacao aprovar() {
-            return EM_ANALISE;
+            return MATRICULADA;
         }
 
         @Override
@@ -28,10 +28,10 @@ public enum StatusSolicitacao {
         }
     },
 
-    EM_ANALISE {
+    MATRICULADA {
         @Override
         StatusSolicitacao aprovar() {
-            throw new RegraNegocioException("A solicitação já foi aprovada e está em análise");
+            throw new RegraNegocioException("A solicitação já foi aprovada e o discente está matriculado");
         }
 
         @Override
@@ -45,6 +45,6 @@ public enum StatusSolicitacao {
     abstract StatusSolicitacao enviarParaListaDeEspera();
 
     public boolean pendenteDeValidacao() {
-        return this != EM_ANALISE;
+        return this != MATRICULADA;
     }
 }

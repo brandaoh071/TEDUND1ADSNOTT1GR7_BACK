@@ -127,7 +127,7 @@ class SolicitacoesFluxoTest {
 
         mvc.perform(patch("/api/solicitacoes/" + primeira + "/aprovar").header(HttpHeaders.AUTHORIZATION, colaboradorCcet))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.status").value("EM_ANALISE"))
+                .andExpect(jsonPath("$.status").value("MATRICULADA"))
                 .andExpect(jsonPath("$.validadoPor").value("SOL-DOC-1"));
 
         executar(colaboradorCcet, patch("/api/solicitacoes/" + segunda + "/lista-espera"),
@@ -146,9 +146,11 @@ class SolicitacoesFluxoTest {
         mvc.perform(get("/api/solicitacoes/semestre").header(HttpHeaders.AUTHORIZATION, aluno1))
                 .andExpect(jsonPath("$.jaSolicitado").value(true));
 
-        mvc.perform(get("/api/auditoria").param("acao", "VALIDAR_SOLICITACAO").header(HttpHeaders.AUTHORIZATION, admin))
-                .andExpect(jsonPath("$.totalElementos").value(3));
-        mvc.perform(get("/api/auditoria").param("acao", "ENVIAR_SOLICITACAO").header(HttpHeaders.AUTHORIZATION, admin))
+        mvc.perform(get("/api/auditoria").param("acao", "VALIDAR_SOLICITACAO").param("usuario", "SOL-")
+                        .header(HttpHeaders.AUTHORIZATION, admin))
+                .andExpect(jsonPath("$.totalElementos").value(2));
+        mvc.perform(get("/api/auditoria").param("acao", "ENVIAR_SOLICITACAO").param("usuario", "SOL-")
+                        .header(HttpHeaders.AUTHORIZATION, admin))
                 .andExpect(jsonPath("$.totalElementos").value(3));
     }
 

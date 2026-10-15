@@ -1,6 +1,7 @@
 package br.ucsal.ted.disciplinas.aplicacao;
 
 import br.ucsal.ted.compartilhado.dominio.Status;
+import br.ucsal.ted.disciplinas.api.DisciplinaFicha;
 import br.ucsal.ted.disciplinas.api.DisciplinaResumo;
 import br.ucsal.ted.disciplinas.api.DisciplinasApi;
 import br.ucsal.ted.disciplinas.dominio.Disciplina;
@@ -39,6 +40,14 @@ public class DisciplinasFacade implements DisciplinasApi {
     @Override
     public List<DisciplinaResumo> listarAtivas() {
         return disciplinas.findByStatusOrderBySigla(Status.ATIVO).stream().map(this::resumo).toList();
+    }
+
+    @Override
+    public List<DisciplinaFicha> listarFichasDoColaborador(Long docenteId, String login) {
+        return disciplinas.findByDocenteIdOrCriadoPorOrderBySigla(docenteId, login).stream()
+                .map(d -> new DisciplinaFicha(d.getId(), d.getSigla(), d.getDescricao(), d.getCursoId(),
+                        d.getCargaHoraria(), d.getDataCadastro(), d.getStatus()))
+                .toList();
     }
 
     private DisciplinaResumo resumo(Disciplina d) {

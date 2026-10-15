@@ -72,7 +72,7 @@ public class SolicitacaoController {
 
     @PatchMapping("/{id}/aprovar")
     @PreAuthorize("hasAnyRole('ADMIN', 'COLABORADOR')")
-    @Operation(summary = "Aprova a solicitação mais antiga da fila; o status passa para EM_ANALISE")
+    @Operation(summary = "Aprova a solicitação mais antiga da fila; o status passa para MATRICULADA")
     public SolicitacaoResponse aprovar(@PathVariable Long id) {
         return service.aprovar(id);
     }

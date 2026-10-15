@@ -28,7 +28,7 @@ class SolicitacaoTest {
     void aprovarLevaParaEmAnaliseERegistraQuemValidou() {
         Solicitacao solicitacao = nova();
         solicitacao.aprovar("doc1");
-        assertThat(solicitacao.getStatus()).isEqualTo(StatusSolicitacao.EM_ANALISE);
+        assertThat(solicitacao.getStatus()).isEqualTo(StatusSolicitacao.MATRICULADA);
         assertThat(solicitacao.getValidadoPor()).isEqualTo("doc1");
         assertThat(solicitacao.getDataValidacao()).isNotNull();
     }
@@ -40,7 +40,7 @@ class SolicitacaoTest {
         assertThat(solicitacao.getStatus()).isEqualTo(StatusSolicitacao.LISTA_ESPERA);
         assertThat(solicitacao.getObservacao()).isEqualTo("Turma cheia");
         solicitacao.aprovar("doc1");
-        assertThat(solicitacao.getStatus()).isEqualTo(StatusSolicitacao.EM_ANALISE);
+        assertThat(solicitacao.getStatus()).isEqualTo(StatusSolicitacao.MATRICULADA);
     }
 
     @Test

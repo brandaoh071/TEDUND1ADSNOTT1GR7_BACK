@@ -149,7 +149,7 @@ public class SolicitacaoService {
     public SolicitacaoResponse aprovar(Long id) {
         Solicitacao solicitacao = solicitacaoParaValidar(id);
         solicitacao.aprovar(UsuarioLogado.atual().login());
-        publicar(AcaoAuditada.VALIDAR_SOLICITACAO, solicitacao, "Aprovada: status EM_ANALISE");
+        publicar(AcaoAuditada.VALIDAR_SOLICITACAO, solicitacao, "Aprovada: status MATRICULADA");
         return montador.montar(solicitacao, false);
     }
 
