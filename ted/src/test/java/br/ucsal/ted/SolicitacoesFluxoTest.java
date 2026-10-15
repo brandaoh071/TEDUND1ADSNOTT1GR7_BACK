@@ -127,7 +127,7 @@ class SolicitacoesFluxoTest {
 
         mvc.perform(patch("/api/solicitacoes/" + primeira + "/aprovar").header(HttpHeaders.AUTHORIZATION, colaboradorCcet))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.status").value("EM_ANALISE"))
+                .andExpect(jsonPath("$.status").value("MATRICULADA"))
                 .andExpect(jsonPath("$.validadoPor").value("SOL-DOC-1"));
 
         executar(colaboradorCcet, patch("/api/solicitacoes/" + segunda + "/lista-espera"),

@@ -102,7 +102,7 @@ class RelatoriosFluxoTest {
                 .andExpect(jsonPath("$.emissao.perfilEmissor").value("USUARIO"))
                 .andExpect(jsonPath("$.emissao.nomeEmissor").value("Aluna Relatora"))
                 .andExpect(jsonPath("$.discente.vinculo", containsString("BES")))
-                .andExpect(jsonPath("$.solicitacoes[0].status").value("EM_ANALISE"))
+                .andExpect(jsonPath("$.solicitacoes[0].status").value("MATRICULADA"))
                 .andExpect(jsonPath("$.solicitacoes[0].itens[0].sigla").value("REL1"));
 
         mvc.perform(post("/api/relatorios/discente").header(HttpHeaders.AUTHORIZATION, colaborador))
