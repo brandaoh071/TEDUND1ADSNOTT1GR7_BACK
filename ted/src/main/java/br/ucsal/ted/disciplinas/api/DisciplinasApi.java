@@ -12,4 +12,6 @@ public interface DisciplinasApi {
     Map<Long, DisciplinaResumo> buscarTodas(Collection<Long> ids);
 
     List<DisciplinaResumo> listarAtivas();
+
+    List<DisciplinaFicha> listarFichasDoColaborador(Long docenteId, String login);
 }

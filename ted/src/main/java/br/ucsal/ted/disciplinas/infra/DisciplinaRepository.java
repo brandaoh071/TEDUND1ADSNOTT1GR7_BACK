@@ -14,4 +14,6 @@ public interface DisciplinaRepository extends JpaRepository<Disciplina, Long>, J
     boolean existsBySiglaIgnoreCaseAndCursoIdAndIdNot(String sigla, Long cursoId, Long id);
 
     List<Disciplina> findByStatusOrderBySigla(Status status);
+
+    List<Disciplina> findByDocenteIdOrCriadoPorOrderBySigla(Long docenteId, String criadoPor);
 }

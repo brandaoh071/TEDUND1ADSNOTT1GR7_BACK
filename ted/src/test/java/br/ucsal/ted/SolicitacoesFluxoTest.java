@@ -146,9 +146,11 @@ class SolicitacoesFluxoTest {
         mvc.perform(get("/api/solicitacoes/semestre").header(HttpHeaders.AUTHORIZATION, aluno1))
                 .andExpect(jsonPath("$.jaSolicitado").value(true));
 
-        mvc.perform(get("/api/auditoria").param("acao", "VALIDAR_SOLICITACAO").header(HttpHeaders.AUTHORIZATION, admin))
-                .andExpect(jsonPath("$.totalElementos").value(3));
-        mvc.perform(get("/api/auditoria").param("acao", "ENVIAR_SOLICITACAO").header(HttpHeaders.AUTHORIZATION, admin))
+        mvc.perform(get("/api/auditoria").param("acao", "VALIDAR_SOLICITACAO").param("usuario", "SOL-")
+                        .header(HttpHeaders.AUTHORIZATION, admin))
+                .andExpect(jsonPath("$.totalElementos").value(2));
+        mvc.perform(get("/api/auditoria").param("acao", "ENVIAR_SOLICITACAO").param("usuario", "SOL-")
+                        .header(HttpHeaders.AUTHORIZATION, admin))
                 .andExpect(jsonPath("$.totalElementos").value(3));
     }
 

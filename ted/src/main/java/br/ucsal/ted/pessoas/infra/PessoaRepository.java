@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
+import java.util.List;
 import java.util.Optional;
 
 @NoRepositoryBean
@@ -17,4 +18,6 @@ public interface PessoaRepository<P extends Pessoa> extends JpaRepository<P, Lon
     boolean existsByEmailIgnoreCaseAndIdNot(String email, Long id);
 
     Optional<P> findByUsuarioId(Long usuarioId);
+
+    List<P> findByCriadoPorOrderByNomeCompleto(String criadoPor);
 }
