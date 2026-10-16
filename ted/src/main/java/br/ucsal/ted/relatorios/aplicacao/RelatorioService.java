@@ -32,7 +32,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -104,13 +103,21 @@ public class RelatorioService {
                         fichasDeDiscentes.stream().map(PessoaFicha::vinculoId))
                 .collect(Collectors.toSet()));
 
-        List<DisciplinaDoRelatorio> disciplinasDoColaborador = fichasDeDisciplinas.stream()
-                .map(d -> new DisciplinaDoRelatorio(d.id(), d.sigla(), d.descricao(),
-                        nomeDoCurso(cursos.get(d.cursoId())), d.cargaHoraria(), d.dataCadastro(), d.status()))
+        
+List<DisciplinaDoRelatorio> disciplinasDoColaborador = fichasDeDisciplinas.stream()
+                .sorted(Comparator.comparing( DisciplinaFicha::sigla, Comparator.nullsLast( String.CASE_INSENSITIVE_ORDER)
+                ))
+                .map(d -> new DisciplinaDoRelatorio( d.id(), d.sigla(), d.descricao(), nomeDoCurso(cursos.get(d.cursoId())), d.cargaHoraria(), 
+                d.dataCadastro(), d.status()))
                 .toList();
-        List<PessoaDoRelatorio> discentes = fichasDeDiscentes.stream()
-                .map(d -> PessoaDoRelatorio.de(d, nomeDoCurso(cursos.get(d.vinculoId()))))
+
+List<PessoaDoRelatorio> discentes = fichasDeDiscentes.stream()
+                .sorted(Comparator.comparing( PessoaFicha::nomeCompleto, Comparator.nullsLast( String.CASE_INSENSITIVE_ORDER)
+                ))
+                .map(d -> PessoaDoRelatorio.de( d, nomeDoCurso(cursos.get(d.vinculoId()))
+                ))
                 .toList();
+
         List<SolicitacaoDoRelatorio> validadas = montarSolicitacoes(solicitacoes.listarValidadasPor(usuario.login()));
 
         NomePerfil perfil = usuario.possuiPerfil(NomePerfil.COLABORADOR.name())
@@ -152,16 +159,24 @@ public class RelatorioService {
                 centro == null ? null : centro.iesSigla(), separados.get(true), separados.get(false));
     }
 
-    private List<SolicitacaoDoRelatorio> montarSolicitacoes(List<SolicitacaoFicha> fichas) {
-        Map<Long, DiscenteResumo> discentes = pessoas.buscarDiscentes(ids(fichas, SolicitacaoFicha::discenteId));
-        Map<Long, DisciplinaResumo> mapaDisciplinas = disciplinas.buscarTodas(fichas.stream()
-                .flatMap(s -> s.itens().stream())
-                .map(SolicitacaoFicha.ItemFicha::disciplinaId)
-                .collect(Collectors.toSet()));
-        return fichas.stream()
-                .map(s -> solicitacao(s, discentes.get(s.discenteId()), mapaDisciplinas))
-                .toList();
-    }
+    
+private List<SolicitacaoDoRelatorio> montarSolicitacoes( List<SolicitacaoFicha> fichas) {
+
+    Map<Long, DiscenteResumo> discentes = pessoas.buscarDiscentes( ids(fichas, SolicitacaoFicha::discenteId)
+            );
+
+    Map<Long, DisciplinaResumo> mapaDisciplinas = disciplinas.buscarTodas( fichas.stream()
+                            .flatMap(s -> s.itens().stream())
+                            .map(SolicitacaoFicha.ItemFicha::disciplinaId)
+                            .collect(Collectors.toSet())
+            );
+
+    return fichas.stream() .sorted(Comparator.comparing( SolicitacaoFicha::dataSolicitacao, Comparator.nullsLast(Comparator.naturalOrder())
+            ))
+            .map(s -> solicitacao( s, discentes.get(s.discenteId()), mapaDisciplinas))
+            .toList();
+}
+
 
     private SolicitacaoDoRelatorio solicitacao(SolicitacaoFicha s, DiscenteResumo discente,
                                                Map<Long, DisciplinaResumo> mapaDisciplinas) {
