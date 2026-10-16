@@ -1,7 +1,6 @@
 package br.ucsal.ted.relatorios.aplicacao.dto;
 
 import br.ucsal.ted.compartilhado.dominio.Status;
-
 import java.time.Instant;
 
 public record DisciplinaDoRelatorio(

@@ -177,7 +177,6 @@ private List<SolicitacaoDoRelatorio> montarSolicitacoes( List<SolicitacaoFicha> 
             .toList();
 }
 
-
     private SolicitacaoDoRelatorio solicitacao(SolicitacaoFicha s, DiscenteResumo discente,
                                                Map<Long, DisciplinaResumo> mapaDisciplinas) {
         List<SolicitacaoDoRelatorio.ItemDoRelatorio> itens = s.itens().stream()

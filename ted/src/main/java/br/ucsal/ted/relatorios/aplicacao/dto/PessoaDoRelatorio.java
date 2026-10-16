@@ -2,7 +2,6 @@ package br.ucsal.ted.relatorios.aplicacao.dto;
 
 import br.ucsal.ted.compartilhado.dominio.Status;
 import br.ucsal.ted.pessoas.api.PessoaFicha;
-
 import java.time.Instant;
 
 public record PessoaDoRelatorio(

@@ -4,7 +4,6 @@ import br.ucsal.ted.compartilhado.dominio.Status;
 import br.ucsal.ted.identidade.api.NomePerfil;
 import br.ucsal.ted.relatorios.dominio.Relatorio;
 import br.ucsal.ted.relatorios.dominio.TipoRelatorio;
-
 import java.time.Instant;
 
 public record EmissaoResponse(
